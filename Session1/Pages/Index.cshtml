@@ -1,0 +1,79 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Random Page";
+}
+
+@{
+    Random random1 = new Random();
+    int randomNumber1 = random1.Next();
+
+    Random random2 = new Random();
+    int randomNumber2 = random2.Next(2, 9);
+
+    Random dice = new Random();
+    int dicenumber = dice.Next(1, 7);
+}
+
+<body>
+    <style>
+        .button {
+  cursor: pointer;
+  padding: 1em 2em;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  color: #000000;
+  transition: all 1000ms;
+  font-size: 18px;
+  position: relative;
+  overflow: hidden;
+  outline: 1px solid #000000;
+}
+
+button:hover {
+  background-color: #ffffff;
+  color: #ffffff;
+  transform: scale(1);
+  box-shadow: 4px 5px 17px -4px #000000;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #000000;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 250%;
+}
+    </style>
+    <div class="text-center">
+        <h1 class="display-4" style="color:white ; Background:black ; border-radius:5px">Random number : @randomNumber1</h1>
+        <hr />
+        <h2 class="display-4" style="color:white ; Background:black ; border-radius:5px">between two and nine : @randomNumber2</h2>
+        <hr />
+        <button class="button" id="dicebutton">Dice</button>
+        <hr />
+        <h4 id="diceResult" class="display-4" style="color:white ; Background:black ; border-radius:5px"></h4>
+
+        <script>
+            const dicebuttonn = document.getElementById("dicebutton");
+            const diceResult = document.getElementById("diceResult");
+
+            dicebuttonn.addEventListener("click", function () {
+                const diceNumber = @dicenumber;
+                diceResult.textContent = "Dice Number -> " + diceNumber;
+            });
+        </script>
+    </div>
+</body>
+
